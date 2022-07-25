@@ -1,8 +1,9 @@
 import Assignment from "./Assignment.js"
+import AssignmentsTags from "./AssignmentsTags.js";
 
 export default {
     components: {
-        Assignment
+        Assignment, AssignmentsTags
     },
 
     template: `
@@ -12,18 +13,11 @@ export default {
                 <span>({{ assignments.length }})</span>
             </h2>
 
-            <div class="flex gap-2">
-                <button
-                    @click="currentTag = tag" 
-                    v-for="tag in tags" 
-                    class="border rounded px-1 py-px text-xs hover:bg-white hover:text-black"
-                    :class="{
-                        'border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white': tag === currentTag
-                    }"
-                >
-                    {{ tag }}
-                </button>
-            </div>
+            <assignments-tags 
+                @change="currentTag = $event"
+                :initial-tags="assignments.map(a => a.tag)"
+                :current-tag=this.currentTag
+            ></assignments-tags>
 
             <ul class="border border-gray-600 divide-y divide-gray-600 mt-6">
                 <assignment 
@@ -54,8 +48,5 @@ export default {
             return this.assignments.filter(a => a.tag === this.currentTag);
         },
 
-        tags() {
-            return ['all', ...new Set(this.assignments.map(a => a.tag))]; // new Set resolves the repetition of same tags ()
-        }
     }
 }
