@@ -1,0 +1,34 @@
+{
+    "assignments": [
+        {
+            "name": "Finish Project", 
+            "complete": false, 
+            "id": 1 , 
+            "tag": "family"
+        },
+        {
+            "name": "Finish the site", 
+            "complete": false, 
+            "id": 2 , 
+            "tag": "work"
+        },
+        {
+            "name": "Play Games", 
+            "complete": false, 
+            "id": 3, 
+            "tag": "hobbies"
+        },
+        {
+            "name": "Read a chapter of a book", 
+            "complete": false, 
+            "id": 4, 
+            "tag": "work"
+        },
+        {
+            "name": "Finish VueJS Lessons", 
+            "complete": true, 
+            "id": 5, 
+            "tag": "study"
+        }
+    ]
+}

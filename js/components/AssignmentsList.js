@@ -1,17 +1,22 @@
 import Assignment from "./Assignment.js"
 import AssignmentsTags from "./AssignmentsTags.js";
+import Panel from "./Panel.js";
 
 export default {
     components: {
-        Assignment, AssignmentsTags
+        Assignment, AssignmentsTags, Panel
     },
 
     template: `
-        <section v-show="assignments.length">
-            <h2 class="font-bold mb-3">
+        <Panel v-show="assignments.length" class="w-70">
+            <div class="flex justify-between items-start">
+                <h2 class="font-bold mb-3">
                 {{ title }}
                 <span>({{ assignments.length }})</span>
-            </h2>
+                </h2>
+
+                <button v-show="canToggle" @click="$emit('toggle')">&times;</button>
+            </div>
 
                 <!-- v-model are doing two things: -->
                 <!-- binds the value
@@ -32,7 +37,9 @@ export default {
                     :assignment="assignment"
                 ></assignment>
             </ul>
-        </section>
+
+            <slot></slot>
+        </Panel>
     `,
 
     data() {
@@ -44,6 +51,7 @@ export default {
     props: {
         assignments: Array,
         title: String,
+        canToggle: { type: Boolean, default: false }
     },
 
     computed: {
